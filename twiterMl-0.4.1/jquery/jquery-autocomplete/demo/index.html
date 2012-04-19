@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<title>jQuery Autocomplete Plugin</title>
+<script type="text/javascript" src="../lib/jquery.js"></script>
+<script type='text/javascript' src='../lib/jquery.bgiframe.min.js'></script>
+<script type='text/javascript' src='../lib/jquery.ajaxQueue.js'></script>
+<script type='text/javascript' src='../lib/thickbox-compressed.js'></script>
+<script type='text/javascript' src='../jquery.autocomplete.js'></script>
+<link rel="stylesheet" type="text/css" href="../jquery.autocomplete.css" />
+	
+<script type="text/javascript">
+$().ready(function() {
+
+	$("#singleBirdRemote").autocomplete("search.php", {
+		width: 260,
+		selectFirst: false
+	});	
+});
+
+</script>
+</head>
+<body>
+
+<div id="content">
+	
+		<p>
+			<label>Single Bird (remote):</label>
+			<input type="text" id="singleBirdRemote" />
+		</p>
+	
+
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+####### twiterML2.php
+## Avanzando hacia Twiter Machine Learnig.
+##
+## Tomamos datos de un formulario de busqueda avanzada
+## consultamos a Twiter con la Search API luego usamos el "text"
+## o los statuses y los procesamos con varios filtros
+##
+##
+##                      By: Jou - joumandolo@gmail.com
+#######
+
+Esta es la primera version estable. Permite hacer una busqueda usando la API Search de Twiter, reibe 3 parametros:
+ Geolocalizacion: con 4 zonas cada una con 5 regiones de chile, utilizadon una cordenada central de la capital de la region y un radio de area de aceurdo a al superficie de cada region
+ 
+ Idioma: permite hacer busquedas en español, ingles o sin filtro
+
+ Palabra de busqueda: es el termino a buscar.
+
+Una vez recibidos los twits se realizan una serie de procesos para extraer informacion de los datos, cada twit es separado en palabras luego insertado en un arreglo, se eliminan las palabras de menos de 3 letras, luego se puentan las repetidas y se creujn arreglo con la respectivas palabras y sus pesos.
+
+Se calcula el peso de la palabra buscada relativo al total de palabras.
+Se muetran las 5 palabras mas pesadas junto con ejemplos de twits que contienen esas palabras.
+
+$name = "twiterML";
+$verStable = "0.3.6";
+$date = "26-09-2011";
+$dateUltimaRevision = "28-10-2011";
+$verUltimaRevision = "0.3.5";
+
+Rev. Ver:0.3.5(28-10-2011)
+---------------------------
+
+* BuscarTwitsJson.php: ahora el buscador entrega resultados mixed, eso incluye twits "recent" y "popular"
+* ejemploTwits.php y ejemploTwitsPesados: ahora muestran el nombre del usuario que creo el twit
+* usuariosPopulares.php: agregado el numero de seguidores de cada usuario popular en parentesis
+* Nuevo modulo, twitsPopulares.php: se recogen los twits marcados como "popular" se muetran como ejemplo junto a su usuario y la cantodad de seguidores que tienen el usuario ademas de la cantidad de retwits que tiene.
+
+Rev. Ver:0.3.7(21-11-2011)
+--------------------------
+Nuevas correcciones de bugs arrastrados en el pasado y un nuevo modulo para facebook que aun esta en pañales pero es el comienzo para ir contruyendolo.
+
+* Incluye restructuracion del sistema de archivos, esto permitio compartir liobrerias entre modulos tanto twiter como facebook al igual que las clses y el resto del codigo.
+ * se agregaron nuevos directorios: fotos, debug, clases.
+* estadisticasGenerale: se arreglo el contador de twits
+* twiterML: cambio la ruta del giffloader
+* buscarTwitsJson: arreglo de rutas
+* nubePalabras: arreglo de rutas, limpieza de script
+* palabrasPesadas: arreglo de rutas
+* usuariosPopulares: arreglo de rutas, limpieza de script
+* cuentaRetwits: eliminado
+* ejemploTwits: arreglo de rutas, twits sin repetir(aun quedan errores), twits aleatorios de la muetra, se cambia el uso de la funcion twitsPesados por getTwitsUnicos y uso de shuffle
+* clases/twits: se añade funcion getTwitsUnicos, permite pesar la lista de twits comparando los textos del mensaje, pesa todos los repetidos y se le agrego un campo 'peso'. Aun hay problemas con el filtro algunos twits complicados sigue apareciendo mas de una vez*********, se corrige la funcion getTwitsPesados, ahora devuelve la estructura twit completa ademas se usa getTwitsUInicos y shufle
+* twitsPopulares: limpieza de script, se cambia al uso de la funcion getTwitsUnicos, arreglo de rutas
+* twiterML: correccion de tamaño de divs
+* fml: directorio que contiene el modulo para facebook, se implenta: facebookML,estadisticasGenerales, palabrasPesadas, nubePalabras y ejemploPost, por ahora no pide termino funciona estaticamente.  
+
+Rev. Ver:0.3.9(2-12-2011)
+--------------------------
+* Implementacion de facebookML, se agrega usuariosPopulares, ejemploPostLikes, ejemploPostComments.
+* usuariosPopulares: se queda con los 5 mas populares de la muestra y busca su nombre mediante el id en la tabla profile.
+* buscarFeedFql: se cambia el modo de busqueda y se usa ahora FQL
+* Se implemnto un buscador temporal para seleccionar la pagina a analizar, se usa autocompletar de jQuery junto a buscaPaginaId, este ultimo usa la graph api para para buscar coincidencias en la tabla page, se intento emular el buscador de facebook, se pretende mejorar en proximas versiones
+
